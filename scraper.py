@@ -500,7 +500,7 @@ Examples:
     parser.add_argument("--class", dest="class_value", type=int, required=True, choices=[9, 10, 11, 12], help="Class: 9, 10, 11, or 12")
     parser.add_argument("--year", type=int, required=True, help="4-digit examination year")
     parser.add_argument("--output-dir", type=str, default=".", help="Directory to save the database")
-    parser.add_argument("--delay", type=float, default=0.5, help="Delay between requests in seconds")
+    parser.add_argument("--delay", type=float, default=0.1, help="Delay between requests in seconds")
     
     return parser.parse_args()
 
@@ -593,7 +593,7 @@ def main() -> int:
                 print(f"\n[Retry {i}/{len(failed_rolls)}] Fetching roll {roll_str}...", end=" ", flush=True)
                 
                 # Wait a bit longer before retry
-                time.sleep(2)
+                time.sleep(1)
                 
                 result_data, image_blob, status, error_msg = fetcher.fetch_result(roll_str, max_retries=7)
                 
